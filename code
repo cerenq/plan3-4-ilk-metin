@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aşk Şifresi - 1. Mektup</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff0f6;
+    color: #333;
+    padding: 20px;
+    max-width: 480px;
+    margin: 30px auto;
+    border: 2px solid #ff77aa;
+    border-radius: 10px;
+  }
+  h1 {
+    text-align: center;
+    color: #d6336c;
+  }
+  .question {
+    margin: 20px 0;
+  }
+  .question p {
+    font-weight: 600;
+  }
+  .options label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+  }
+  button {
+    background: #d6336c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+  }
+  button:disabled {
+    background: #ffa3bf;
+    cursor: not-allowed;
+  }
+  #result {
+    margin-top: 20px;
+    font-weight: 700;
+    color: #198754; /* yeşil */
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <h1>Aşk Şifresi - 1. Mektup</h1>
+
+  <form id="quizForm">
+    <div class="question">
+      <p>1) Seni ilk öptüğüm yer hangi Marmaray durağına daha yakındı?</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"> A) Zıt Erenköy</label>
+        <label><input type="radio" name="q1" value="B"> B) Bostancı</label>
+        <label><input type="radio" name="q1" value="C"> C) Göztepe</label>
+        <label><input type="radio" name="q1" value="D"> D) Suadiye</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>2) Sana en çok yakıştığını düşündüğüm renk?</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"> A) Beyaz</label>
+        <label><input type="radio" name="q2" value="B"> B) Kırmızı</label>
+        <label><input type="radio" name="q2" value="C"> C) Mavi</label>
+        <label><input type="radio" name="q2" value="D"> D) Yeşil</label>
+      </div>
+    </div>
+
+    <button type="submit">Cevapları Kontrol Et</button>
+  </form>
+
+  <div id="result"></div>
+
+<script>
+  const form = document.getElementById('quizForm');
+  const resultDiv = document.getElementById('result');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const q1 = form.elements['q1'].value;
+    const q2 = form.elements['q2'].value;
+
+    if (!q1 || !q2) {
+      resultDiv.textContent = 'Lütfen her iki soruyu da cevaplayın.';
+      resultDiv.style.color = 'red';
+      return;
+    }
+
+    if (q1 === 'B' && q2 === 'D') {
+      resultDiv.style.color = '#198754'; // yeşil
+      resultDiv.textContent = 'Tebrikler! Mektuba erişebilirsiniz.';
+
+      setTimeout(() => {
+        window.open('https://www.notion.so/Merhaba-bebe-im-22bb1c2000938003bb49c3ce7887dbbe?source=copy_link', '_blank');
+      }, 1500);
+    } else {
+      resultDiv.style.color = 'red';
+      resultDiv.textContent = 'Bir veya daha fazla cevap yanlış. Tekrar deneyin!';
+    }
+  });
+</script>
+
+</body>
+</html>
